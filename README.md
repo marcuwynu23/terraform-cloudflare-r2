@@ -115,8 +115,6 @@ terraform destroy
 | `r2_bucket_name` | Name of the R2 bucket        |
 | `r2_bucket_id`   | ID of the R2 bucket resource |
 
----
-
 ## Usage as a Module
 
 Reference this repository as a Terraform module in your own configurations:
@@ -145,8 +143,6 @@ resource "cloudflare_workers_script" "worker" {
 ```
 
 All variables and outputs documented below are available when using this as a module.
-
----
 
 ## Optional Configuration
 
