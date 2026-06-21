@@ -115,6 +115,39 @@ terraform destroy
 | `r2_bucket_name` | Name of the R2 bucket        |
 | `r2_bucket_id`   | ID of the R2 bucket resource |
 
+---
+
+## Usage as a Module
+
+Reference this repository as a Terraform module in your own configurations:
+
+```hcl
+module "r2_bucket" {
+  source = "github.com/marcuwynu23/terraform-cloudflare-r2?ref=main"
+
+  cloudflare_api_token  = var.cloudflare_api_token
+  cloudflare_account_id = var.cloudflare_account_id
+  bucket_name           = "my-r2-bucket"
+}
+```
+
+Then use the outputs in your configuration:
+
+```hcl
+# Example: bind the bucket to a Cloudflare Worker
+resource "cloudflare_workers_script" "worker" {
+  # ...
+  r2_bucket_bindings {
+    name        = "BUCKET"
+    bucket_name = module.r2_bucket.r2_bucket_name
+  }
+}
+```
+
+All variables and outputs documented below are available when using this as a module.
+
+---
+
 ## Optional Configuration
 
 The `cloudflare_r2_bucket` resource supports these optional arguments (commented in `main.tf`):
