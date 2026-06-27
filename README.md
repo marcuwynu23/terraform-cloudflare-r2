@@ -119,15 +119,28 @@ terraform destroy
 
 Reference this repository as a Terraform module in your own configurations:
 
-```hcl
-module "r2_bucket" {
-  source = "github.com/marcuwynu23/terraform-cloudflare-r2?ref=main"
-
-  cloudflare_api_token  = var.cloudflare_api_token
-  cloudflare_account_id = var.cloudflare_account_id
-  bucket_name           = "my-r2-bucket"
-}
-```
+> **Option 1**: Terraform Registry (recommended)
+> ```hcl
+> module "r2" {
+>   source  = "marcuwynu23/r2/cloudflare"
+>   version = "1.0.0"
+>
+>   cloudflare_api_token  = var.cloudflare_api_token
+>   cloudflare_account_id = var.cloudflare_account_id
+>   bucket_name           = "my-r2-bucket"
+> }
+> ```
+>
+> **Option 2**: GitHub source
+> ```hcl
+> module "r2" {
+>   source = "github.com/marcuwynu23/terraform-cloudflare-r2?ref=main"
+>
+>   cloudflare_api_token  = var.cloudflare_api_token
+>   cloudflare_account_id = var.cloudflare_account_id
+>   bucket_name           = "my-r2-bucket"
+> }
+> ```
 
 Then use the outputs in your configuration:
 
